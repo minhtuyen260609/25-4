@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Todo List</title>
+
+    <link rel="stylesheet"
+          href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css">
+</head>
+<body class="bg-light">
+
+<div class="container mt-5">
+
+    <div class="card shadow">
+        <div class="card-header bg-primary text-white d-flex justify-content-between align-items-center">
+            <h4 class="mb-0">Danh sách Todo</h4>
+            <a th:href="@{/add}" class="btn btn-light btn-sm">+ Thêm mới</a>
+        </div>
+
+        <div class="card-body">
+            <table class="table table-bordered table-hover text-center">
+                <thead class="thead-dark">
+                <tr>
+                    <th>ID</th>
+                    <th>Nội dung</th>
+                    <th>Ngày hết hạn</th>
+                    <th>Trạng thái</th>
+                    <th>Ưu tiên</th>
+                </tr>
+                </thead>
+
+                <tbody>
+                <tr th:each="t : ${todos}">
+                    <td th:text="${t.id}"></td>
+                    <td th:text="${t.content}"></td>
+                    <td th:text="${t.dueDate}"></td>
+                    <td th:text="${t.status}"></td>
+                    <td th:text="${t.priority}"></td>
+                </tr>
+
+                <tr th:if="${#lists.isEmpty(todos)}">
+                    <td colspan="5" class="text-muted">Chưa có todo nào</td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+</div>
+
+</body>
+</html>
