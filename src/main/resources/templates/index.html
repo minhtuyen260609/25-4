@@ -10,7 +10,6 @@
 <body class="bg-light">
 
 <div class="container mt-5">
-
     <div class="card shadow">
         <div class="card-header bg-primary text-white d-flex justify-content-between align-items-center">
             <h4 class="mb-0">Danh sách Todo</h4>
@@ -26,6 +25,7 @@
                     <th>Ngày hết hạn</th>
                     <th>Trạng thái</th>
                     <th>Ưu tiên</th>
+                    <th>Hành động</th>
                 </tr>
                 </thead>
 
@@ -36,10 +36,22 @@
                     <td th:text="${t.dueDate}"></td>
                     <td th:text="${t.status}"></td>
                     <td th:text="${t.priority}"></td>
+                    <td>
+                        <a th:href="@{/todos/edit/{id}(id=${t.id})}"
+                           class="btn btn-warning btn-sm">
+                            Sửa
+                        </a>
+
+                        <a th:href="@{/todos/delete/{id}(id=${t.id})}"
+                           class="btn btn-danger btn-sm"
+                           onclick="return confirm('Bạn có chắc chắn muốn xóa không?')">
+                            Xóa
+                        </a>
+                    </td>
                 </tr>
 
                 <tr th:if="${#lists.isEmpty(todos)}">
-                    <td colspan="5" class="text-muted">Chưa có todo nào</td>
+                    <td colspan="6" class="text-muted">Chưa có todo nào</td>
                 </tr>
                 </tbody>
             </table>
